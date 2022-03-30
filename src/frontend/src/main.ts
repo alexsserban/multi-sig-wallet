@@ -1,5 +1,6 @@
 import { createApp } from "vue";
 import App from "./App.vue";
+import Notifications from "notiwind";
 import "./index.css";
 
-createApp(App).mount("#app");
+createApp(App).use(Notifications).mount("#app");

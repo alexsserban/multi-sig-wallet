@@ -1,23 +1,26 @@
 {
-  "name": "frontend",
-  "private": true,
-  "version": "0.0.0",
-  "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "ethers": "^5.6.2",
-    "vue": "^3.2.25"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-vue": "^2.2.0",
-    "autoprefixer": "^10.4.4",
-    "postcss": "^8.4.12",
-    "tailwindcss": "^3.0.23",
-    "typescript": "^4.5.4",
-    "vite": "^2.8.0",
-    "vue-tsc": "^0.29.8"
-  }
+    "name": "frontend",
+    "private": true,
+    "version": "0.0.0",
+    "scripts": {
+        "dev": "vite",
+        "build": "vue-tsc --noEmit && vite build",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "@types/node": "^17.0.23",
+        "ethers": "^5.6.2",
+        "notiwind": "^1.2.5",
+        "vue": "^3.2.25"
+    },
+    "devDependencies": {
+        "@tailwindcss/forms": "^0.5.0",
+        "@vitejs/plugin-vue": "^2.2.0",
+        "autoprefixer": "^10.4.4",
+        "postcss": "^8.4.12",
+        "tailwindcss": "^3.0.23",
+        "typescript": "^4.5.4",
+        "vite": "^2.8.0",
+        "vue-tsc": "^0.29.8"
+    }
 }

@@ -1,21 +1,32 @@
-<script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+    <div class="flex justify-center w-full min-h-screen py-12 bg-gray-800 text-white">
+        <Home v-if="hasWallet" />
+        <Install v-else />
+    </div>
+
+    <AppNotification />
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<script setup lang="ts">
+import { computed, onMounted } from "vue";
+
+import AppNotification from "./components/AppNotification.vue";
+import Install from "./components/Install.vue";
+import Home from "./pages/Home.vue";
+
+import { provider, setAccount } from "./composition/web3";
+
+const hasWallet = computed(() => (window.ethereum ? true : false));
+
+onMounted(async () => {
+    if (!hasWallet) return;
+
+    const accounts = await provider.listAccounts();
+    setAccount(accounts[0]);
+
+    window.ethereum.on("accountsChanged", (accounts: any) => {
+        setAccount(accounts[0]);
+        console.log("Account changed to: ", accounts[0]);
+    });
+});
+</script>
