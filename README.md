@@ -1,15 +1,9 @@
 # Multi Signature Wallet
 
-This project demonstrates a Multi Signature Wallet (tested) using Solidity, Hardhat, Waffle, Ethers.js, Chain for the backend and Vite, Vue3, TS, Ethers.js for the frontend.
+ - [Dapp](https://multi-sig-wallet-three.vercel.app/) deployed on [Vercel](https://vercel.com/) 
+ - [Dapp Demo](https://www.loom.com/share/c4c791e043e14759a3f794213e190f51)
+ - [Dapp External Function Call Demo](https://www.loom.com/share/da6bdd25475f4f80b275dd0c55ffd7f8) on [Remix](https://remix.ethereum.org/) 
+ - Solidity, Hardhat, Waffle, Ethers.js, Chain for the backend 
+ - Vite, Vue3, Typescript, Ethers.js for the frontend
 
-## Backend
 
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-node scripts/sample-script.js
-npx hardhat help
-```
