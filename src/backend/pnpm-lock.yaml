@@ -4,9 +4,13 @@ specifiers:
   '@nomiclabs/hardhat-ethers': ^2.0.5
   '@nomiclabs/hardhat-waffle': ^2.0.3
   chai: ^4.3.6
+  dotenv: ^16.0.0
   ethereum-waffle: ^3.4.4
   ethers: ^5.6.2
   hardhat: ^2.9.2
+
+dependencies:
+  dotenv: 16.0.0
 
 devDependencies:
   '@nomiclabs/hardhat-ethers': 2.0.5_ethers@5.6.2+hardhat@2.9.2
@@ -2436,6 +2440,11 @@ packages:
   /dom-walk/0.1.2:
     resolution: {integrity: sha512-6QvTW9mrGeIegrFXdtQi9pk7O/nSK6lSdXW2eqUspN5LWD7UTji2Fqw5V2YLjBpHEoU9Xl/eUWNpDeZvoyOv2w==}
     dev: true
+
+  /dotenv/16.0.0:
+    resolution: {integrity: sha512-qD9WU0MPM4SWLPJy/r2Be+2WgQj8plChsyrCNQzW/0WjvcJQiKQJ9mH3ZgB3fxbUUxgc/11ZJ0Fi5KiimWGz2Q==}
+    engines: {node: '>=12'}
+    dev: false
 
   /dotignore/0.1.2:
     resolution: {integrity: sha512-UGGGWfSauusaVJC+8fgV+NVvBXkCTmVv7sk6nojDZZvuOUNGUy0Zk4UpHQD6EDjS0jpBwcACvH4eofvyzBcRDw==}
