@@ -1,7 +1,11 @@
 <template>
     <div class="flex justify-center w-full min-h-screen py-12 bg-gray-800 text-white">
-        <Home v-if="hasWallet" />
-        <Install v-else />
+        <div class="text-center w-1/4">
+            <h1 class="text-4xl font-semibold m-4">Multi Signature Wallet</h1>
+
+            <Home v-if="hasWallet" />
+            <Install v-else />
+        </div>
     </div>
 
     <AppNotification />
