@@ -58,7 +58,14 @@
 
                         <p>Value: {{ ethers.utils.formatEther(tx.value) + " ETH" }}</p>
 
-                        <p>Data: {{ tx.data }}</p>
+                        <p v-if="tx.data.length == 4">Data: {{ tx.data }}</p>
+                        <div v-else class="has-tooltip">
+                            <span class="tooltip rounded shadow-lg p-3 bg-indigo-900 text-white -mt-10 -ml-48">
+                                {{ tx.data }}
+                            </span>
+
+                            Data: {{ getShortData(tx.data) }}
+                        </div>
                     </div>
 
                     <div v-if="!tx.executed" class="grid grid-cols-2">
@@ -140,9 +147,8 @@ let transactions: any = ref([]);
 
 const txCount = computed(() => transactions.value.length);
 
-const getShortAddress = (address: string) => {
-    return address.slice(0, 5) + "..." + address.slice(-3);
-};
+const getShortAddress = (address: string) => address.slice(0, 5) + "..." + address.slice(-3);
+const getShortData = (data: string) => data.slice(0, 5) + "..." + data.slice(-3);
 
 const newTransaction = reactive({
     to: "",
