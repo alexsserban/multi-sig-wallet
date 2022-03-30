@@ -1,18 +1,6 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract TestContract {
-    uint256 public i;
-
-    function callMe(uint256 j) public {
-        i += j;
-    }
-
-    function getData() public pure returns (bytes memory) {
-        return abi.encodeWithSignature("callMe(uint256)", 123);
-    }
-}
-
 contract MultiSigWallet {
     address[] public owners;
     mapping(address => bool) isOwner;
@@ -23,9 +11,11 @@ contract MultiSigWallet {
         uint256 value;
         bytes data;
         bool executed;
-        mapping(address => bool) isConfirmed;
         uint256 numConfirmations;
     }
+
+    //isConfirmed
+    mapping(uint256 => mapping(address => bool)) isTxConfirmedBy;
 
     Transaction[] public transactions;
 
@@ -57,10 +47,7 @@ contract MultiSigWallet {
     }
 
     modifier notConfirmed(uint256 _txIndex) {
-        require(
-            !transactions[_txIndex].isConfirmed[msg.sender],
-            "Tx already confirmed"
-        );
+        require(!isTxConfirmedBy[_txIndex][msg.sender], "Tx already confirmed");
         _;
     }
 
@@ -93,6 +80,14 @@ contract MultiSigWallet {
         }
     }
 
+    function getOwners() public view returns (address[] memory) {
+        return owners;
+    }
+
+    function getTransactions() public view returns (Transaction[] memory) {
+        return transactions;
+    }
+
     function submitTransaction(
         address _to,
         uint256 _value,
@@ -118,7 +113,7 @@ contract MultiSigWallet {
         notConfirmed(_txIndex)
     {
         Transaction storage transaction = transactions[_txIndex];
-        transaction.isConfirmed[msg.sender] = true;
+        isTxConfirmedBy[_txIndex][msg.sender] = true;
         transaction.numConfirmations += 1;
 
         emit ConfirmTransaction(msg.sender, _txIndex);
@@ -156,9 +151,9 @@ contract MultiSigWallet {
     {
         Transaction storage transaction = transactions[_txIndex];
 
-        require(transaction.isConfirmed[msg.sender], "Tx not confirmed");
+        require(isTxConfirmedBy[_txIndex][msg.sender], "Tx not confirmed");
 
-        transaction.isConfirmed[msg.sender] = false;
+        isTxConfirmedBy[_txIndex][msg.sender] = false;
         transaction.numConfirmations -= 1;
 
         emit RevokeConfirmation(msg.sender, _txIndex);
